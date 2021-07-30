@@ -44,7 +44,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	utils.Respond(w, map[string]interface{}{"accessToken": token})
-
 }
 
 //Create Function that responds to user/create endpoint - adds new user.

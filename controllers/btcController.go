@@ -23,6 +23,4 @@ func Rate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	utils.Respond(w, map[string]interface{}{"bitcoin_rate": btcRate})
-
-	return
 }
