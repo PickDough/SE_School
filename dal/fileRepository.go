@@ -16,10 +16,6 @@ type FileRepository struct {
 	users []models.User
 }
 
-func (repo *FileRepository) load() {
-
-}
-
 //Add Adds user to the repository and writes its data to file
 func (repo *FileRepository) Add(u models.User) error {
 	repo.mu.Lock()
