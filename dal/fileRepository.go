@@ -16,7 +16,6 @@ type FileRepository struct {
 	users []models.User
 }
 
-//Add Adds user to the repository and writes its data to file
 func (repo *FileRepository) Add(u models.User) error {
 	repo.mu.Lock()
 	defer repo.mu.Unlock()
@@ -45,7 +44,6 @@ func (repo *FileRepository) Add(u models.User) error {
 	return nil
 }
 
-//Get Gets user by the email provided
 func (repo *FileRepository) Get(email string) (*models.User, error) {
 	repo.mu.Lock()
 	defer repo.mu.Unlock()

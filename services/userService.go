@@ -15,7 +15,6 @@ type UserService struct {
 	Repo UserRepository
 }
 
-//AddUser Adds new user if it doesn't validate business logic.
 func (service *UserService) AddUser(user models.User) error {
 	exists, err := service.Repo.Get(user.Email)
 	if err != nil {
@@ -38,7 +37,6 @@ func (service *UserService) AddUser(user models.User) error {
 	return nil
 }
 
-//LoginUser Logins user if it doesn't validate business logic.
 func (service *UserService) LoginUser(user models.User) error {
 	userByEmail, err := service.Repo.Get(user.Email)
 

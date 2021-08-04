@@ -12,7 +12,6 @@ type BtcService interface {
 
 var BtcServ BtcService
 
-// Rate Returning price of BTC in UAH
 func Rate(w http.ResponseWriter, r *http.Request) {
 	btcRate, err := BtcServ.GetBtcRate()
 

@@ -10,17 +10,16 @@ import (
 type AuthService struct {
 }
 
-//GenerateToken Returns signed JWT.
 func (service *AuthService) GenerateToken(userEmail string) (models.Token, error) {
 	var err error
 
 	//Specifying claims
-	atClaims := jwt.MapClaims{}
-	atClaims["authorized"] = true
-	atClaims["user_email"] = userEmail
-	atClaims["exp"] = time.Now().Add(time.Minute * 15).Unix()
+	authenticationClaims := jwt.MapClaims{}
+	authenticationClaims["authorized"] = true
+	authenticationClaims["user_email"] = userEmail
+	authenticationClaims["exp"] = time.Now().Add(time.Minute * 15).Unix()
 
-	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
+	at := jwt.NewWithClaims(jwt.SigningMethodHS256, authenticationClaims)
 	token, err := at.SignedString([]byte(os.Getenv("TOKEN_SECRET")))
 
 	if err != nil {

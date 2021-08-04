@@ -11,13 +11,13 @@ import (
 
 func JwtMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		notAuth := []string{"/user/create", "/user/login"}
+		publicPaths := []string{"/user/create", "/user/login"}
 		requestPath := r.URL.Path
 
 		//Checking if request path requires authentication
-		for _, value := range notAuth {
+		for _, publicPath := range publicPaths {
 
-			if value == requestPath {
+			if publicPath == requestPath {
 				next.ServeHTTP(w, r)
 				return
 			}

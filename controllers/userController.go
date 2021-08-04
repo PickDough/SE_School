@@ -19,7 +19,6 @@ type AuthService interface {
 var UserServ UserService
 var AuthServ AuthService
 
-//Login Function that responds to user/login endpoint - logins user.
 func Login(w http.ResponseWriter, r *http.Request) {
 	user := &models.User{}
 
@@ -46,7 +45,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	utils.Respond(w, map[string]interface{}{"accessToken": token})
 }
 
-//Create Function that responds to user/create endpoint - adds new user.
 func Create(w http.ResponseWriter, r *http.Request) {
 	user := &models.User{}
 
