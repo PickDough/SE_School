@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Pick-Down/BTC_API/models"
+	"SE_School/models"
 )
 
 type FileRepository struct {
@@ -16,7 +16,7 @@ type FileRepository struct {
 	users []models.User
 }
 
-func (repo *FileRepository) Add(u models.User) error {
+func (repo *FileRepository) Add(user models.User) error {
 	repo.mu.Lock()
 	defer repo.mu.Unlock()
 
@@ -26,18 +26,18 @@ func (repo *FileRepository) Add(u models.User) error {
 	}
 
 	//Open file for read, write, append and create file if it doesn't exist
-	f, err := os.OpenFile("users.data", os.O_APPEND|os.O_RDWR|os.O_CREATE, 0666)
+	file, err := os.OpenFile("users.data", os.O_APPEND|os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
 		return err
 	}
 	//Append formatted string to the end of file
-	if _, err := f.WriteString(fmt.Sprintf("%s %s\n", u.Email, u.Password)); err != nil {
+	if _, err := file.WriteString(fmt.Sprintf("%s %s\n", user.Email, user.Password)); err != nil {
 		return err
 	}
 
-	repo.users = append(repo.users, u)
+	repo.users = append(repo.users, user)
 
-	if err := f.Close(); err != nil {
+	if err := file.Close(); err != nil {
 		return err
 	}
 
@@ -69,22 +69,22 @@ func (repo *FileRepository) readUsers() error {
 		return nil
 	}
 
-	f, err := os.OpenFile("users.data", os.O_RDONLY, 0666)
+	file, err := os.OpenFile("users.data", os.O_RDONLY, 0666)
 	if err != nil {
 		return err
 	}
 
-	c := make([]byte, 1)
+	bytes := make([]byte, 1)
 	var user []byte
 
 	//Resets the file's offset in order to read every user.
-	if _, err := f.Seek(0, 0); err != nil {
+	if _, err := file.Seek(0, 0); err != nil {
 		return err
 	}
 
 	//While file hasn't been read to the end(Foreach byte)
 	for {
-		_, err := f.Read(c)
+		_, err := file.Read(bytes)
 		if err == io.EOF {
 			break
 		}
@@ -92,8 +92,8 @@ func (repo *FileRepository) readUsers() error {
 			return err
 		}
 		//If not end of line(each line is single user)
-		if c[0] != '\n' {
-			user = append(user, c[0])
+		if bytes[0] != '\n' {
+			user = append(user, bytes[0])
 		} else {
 			//Convert slice of bytes to string and split by empty space
 			userData := strings.Split(string(user), " ")
@@ -102,7 +102,7 @@ func (repo *FileRepository) readUsers() error {
 		}
 	}
 
-	if err := f.Close(); err != nil {
+	if err := file.Close(); err != nil {
 		return err
 	}
 

@@ -1,8 +1,8 @@
 package services
 
 import (
+	"SE_School/models"
 	"errors"
-	"github.com/Pick-Down/BTC_API/models"
 	"net/mail"
 )
 

@@ -1,8 +1,8 @@
 package services
 
 import (
+	"SE_School/models"
 	"encoding/json"
-	"github.com/Pick-Down/BTC_API/models"
 	"net/http"
 )
 

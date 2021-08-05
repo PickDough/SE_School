@@ -1,8 +1,8 @@
 package middleware
 
 import (
+	"SE_School/utils"
 	"errors"
-	"github.com/Pick-Down/BTC_API/utils"
 	"github.com/dgrijalva/jwt-go"
 	"net/http"
 	"os"

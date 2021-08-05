@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/Pick-Down/BTC_API/models"
+	"SE_School/models"
 	"github.com/dgrijalva/jwt-go"
 	"os"
 	"time"

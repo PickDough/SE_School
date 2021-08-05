@@ -1,4 +1,4 @@
-module github.com/Pick-Down/BTC_API
+module SE_School
 
 go 1.17
 

@@ -1,9 +1,9 @@
 package controllers
 
 import (
+	"SE_School/models"
+	"SE_School/utils"
 	"encoding/json"
-	"github.com/Pick-Down/BTC_API/models"
-	"github.com/Pick-Down/BTC_API/utils"
 	"net/http"
 )
 
