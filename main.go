@@ -1,11 +1,11 @@
 package main
 
 import (
+	"SE_School/controllers"
+	"SE_School/dal"
+	"SE_School/middleware"
+	"SE_School/services"
 	"fmt"
-	"github.com/Pick-Down/BTC_API/controllers"
-	"github.com/Pick-Down/BTC_API/dal"
-	"github.com/Pick-Down/BTC_API/middleware"
-	"github.com/Pick-Down/BTC_API/services"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"log"
